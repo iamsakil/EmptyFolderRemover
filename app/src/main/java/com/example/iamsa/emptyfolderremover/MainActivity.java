@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.text.MessageFormat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                     } while (!isFinished);
                     TextView welcomeText = findViewById(R.id.welcomeText);
                     deletionInfo.append("Finished.");
-                    welcomeText.setText(total_deleted + " folders deleted.");
+                    welcomeText.setText(MessageFormat.format("{0} folders deleted.", total_deleted));
                     Toast.makeText(getApplicationContext(),"Total empty folders deleted " + total_deleted, Toast.LENGTH_SHORT).show();
                 }
             });
@@ -83,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
         File[] listofFiles = folder.listFiles();
 
         if (listofFiles.length == 0) {
-            //System.out.println("Folder Name :: " + folder.getAbsolutePath() + " is deleted.");
             total_deleted++;
             //Toast.makeText(getApplicationContext(),folder.getAbsolutePath() + " deleted.", Toast.LENGTH_SHORT).show();
             deletionInfo.append(folder.getAbsolutePath() + " deleted.\n");
